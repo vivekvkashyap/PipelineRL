@@ -36,6 +36,7 @@ class PipelineRLConfig:
     importance_weight_clamp: float = 5.0  # c in Eq. 5
     length_penalty_start: float = 0.9
     length_penalty_value: float = -0.5
+    ring_buffer_size: int = 256  # max sequences in the Actor→Trainer queue
 
     # Weight sync
     weight_sync_dir: str = "/tmp/pipelinerl/weights"

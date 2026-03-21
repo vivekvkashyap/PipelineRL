@@ -16,6 +16,7 @@ max_grad_norm: 1.0
 total_optimizer_steps: 3
 
 importance_weight_clamp: 5.0
+ring_buffer_size: 64
 length_penalty_start: 0.9
 length_penalty_value: -0.5
 

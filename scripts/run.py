@@ -200,7 +200,7 @@ def _run_trainer(
     output_dir = Path(config.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     total_sequences = 0
-    next_result_idx = 0  # track which result file to read next
+    read_cursor = 0  # next sequence index to read from ring buffer
 
     logger.info("Trainer starting training loop...")
 
@@ -208,26 +208,53 @@ def _run_trainer(
         metrics.step_start()
 
         # -----------------------------------------------------------------
-        # Collect B sequences from the results directory
-        # Actor writes result_XXXXXXXX.pkl files; we read them in order.
+        # Collect B sequences from the ring buffer.
+        #
+        # The Actor writes to circular slots (slot_000000.pkl, etc.) and
+        # updates write_cursor.txt with the total count. If the Actor is
+        # faster than the Trainer, the ring buffer overwrites stale data.
+        # When we detect the gap exceeds buffer_size, we skip ahead to
+        # the freshest available data — this minimizes lag.
         # -----------------------------------------------------------------
         batch: list[SequenceResult] = []
         wait_start = time.time()
 
         while len(batch) < config.train_batch_size:
-            result_path = results_dir / f"result_{next_result_idx:08d}.pkl"
-            if result_path.exists():
+            # Read the Actor's write cursor to know what's available
+            cursor_path = results_dir / "write_cursor.txt"
+            write_cursor = 0
+            if cursor_path.exists():
                 try:
-                    with open(result_path, "rb") as f:
-                        result = pickle.load(f)
-                    batch.append(result)
-                    next_result_idx += 1
-                    result_path.unlink()  # clean up after reading
-                except Exception as e:
+                    write_cursor = int(cursor_path.read_text().strip())
+                except (ValueError, OSError):
+                    pass
+
+            if read_cursor < write_cursor:
+                # Check if we fell behind — skip to freshest data
+                gap = write_cursor - read_cursor
+                if gap > config.ring_buffer_size:
+                    skipped = gap - config.ring_buffer_size
+                    read_cursor = write_cursor - config.ring_buffer_size
+                    logger.info(
+                        f"Ring buffer: skipped {skipped} stale sequences "
+                        f"(jumped to read_cursor={read_cursor})"
+                    )
+
+                slot_idx = read_cursor % config.ring_buffer_size
+                slot_path = results_dir / f"slot_{slot_idx:06d}.pkl"
+                if slot_path.exists():
+                    try:
+                        with open(slot_path, "rb") as f:
+                            result = pickle.load(f)
+                        batch.append(result)
+                        read_cursor += 1
+                    except Exception:
+                        time.sleep(0.1)
+                        continue
+                else:
                     time.sleep(0.1)
-                    continue
             else:
-                # Wait for Actor to produce more results
+                # Actor hasn't produced enough yet — wait
                 time.sleep(0.5)
                 if time.time() - wait_start > 300:
                     logger.error("Timeout waiting for Actor results")

@@ -262,9 +262,13 @@ async def _actor_async_main(
                     num_tokens=num_tokens,
                 )
 
-                # Write to filesystem for Trainer (Algorithm 2, line 5)
-                _write_result(result, results_dir, total_generated)
+                # Write to ring buffer slot (Algorithm 2, line 5).
+                # The ring buffer overwrites oldest data when full,
+                # ensuring the Trainer always gets fresh sequences.
+                slot_idx = total_generated % config.ring_buffer_size
+                _write_result(result, results_dir, slot_idx)
                 total_generated += 1
+                _write_cursor(results_dir, total_generated)
 
             except Exception as e:
                 logger.warning(f"Error processing request {req_id}: {e}")
@@ -291,12 +295,25 @@ async def _actor_async_main(
     logger.info(f"Actor finished | total_generated={total_generated}")
 
 
-def _write_result(result: SequenceResult, results_dir: str, idx: int) -> None:
-    """Write a SequenceResult to the shared results directory."""
+def _write_result(result: SequenceResult, results_dir: str, slot_idx: int) -> None:
+    """Write a SequenceResult to a ring buffer slot."""
     import pickle
 
-    path = os.path.join(results_dir, f"result_{idx:08d}.pkl")
+    path = os.path.join(results_dir, f"slot_{slot_idx:06d}.pkl")
     tmp_path = path + ".tmp"
     with open(tmp_path, "wb") as f:
         pickle.dump(result, f)
     os.rename(tmp_path, path)
+
+
+def _write_cursor(results_dir: str, total_written: int) -> None:
+    """Write the ring buffer write cursor (total sequences written so far).
+
+    The Trainer uses this to know how many sequences are available and
+    to detect when it needs to skip ahead (ring buffer wraparound).
+    """
+    cursor_path = os.path.join(results_dir, "write_cursor.txt")
+    tmp_path = cursor_path + ".tmp"
+    with open(tmp_path, "w") as f:
+        f.write(str(total_written))
+    os.rename(tmp_path, cursor_path)

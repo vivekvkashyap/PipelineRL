@@ -24,6 +24,7 @@ total_optimizer_steps: 500
 
 # --- PipelineRL-specific ---
 importance_weight_clamp: 5.0     # c: clamp importance sampling weights
+ring_buffer_size: 256            # max sequences in Actor→Trainer queue
 length_penalty_start: 0.9       # start penalizing at 90% of max_seq_len
 length_penalty_value: -0.5      # soft penalty for approaching max length
 
