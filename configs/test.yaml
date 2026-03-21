@@ -28,3 +28,7 @@ dataset_split: "main"
 log_interval: 1
 save_interval: 100
 output_dir: "outputs/test_run"
+
+wandb_project: "pipelinerl"
+wandb_run_name: "test-run"
+wandb_enabled: false

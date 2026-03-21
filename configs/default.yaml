@@ -39,3 +39,8 @@ dataset_split: "main"
 log_interval: 1                  # log every N optimizer steps
 save_interval: 50                # save checkpoint every N steps
 output_dir: "outputs"
+
+# --- Weights & Biases ---
+wandb_project: "pipelinerl"
+wandb_run_name: ""               # auto-generated if empty
+wandb_enabled: true

@@ -50,6 +50,11 @@ class PipelineRLConfig:
     save_interval: int = 50
     output_dir: str = "outputs"
 
+    # Weights & Biases
+    wandb_project: str = "pipelinerl"
+    wandb_run_name: str = ""  # auto-generated if empty
+    wandb_enabled: bool = True
+
     @classmethod
     def from_yaml(cls, path: str | Path) -> "PipelineRLConfig":
         with open(path) as f:

@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.pipelinerl.config import PipelineRLConfig
 from src.pipelinerl.dataset import load_gsm8k
-from src.pipelinerl.utils import setup_logging
+from src.pipelinerl.utils import finish_wandb, init_wandb, setup_logging
 from src.pipelinerl.weight_sync import WeightSynchronizer
 
 logger = logging.getLogger("pipelinerl")
@@ -73,7 +73,11 @@ def main():
     logger.info(f"Train batch (B):{config.train_batch_size}")
     logger.info(f"Optimizer steps: {config.total_optimizer_steps}")
     logger.info(f"IS clamp (c):   {config.importance_weight_clamp}")
+    logger.info(f"W&B:            {'enabled' if config.wandb_enabled else 'disabled'}")
     logger.info("=" * 60)
+
+    # Initialize Weights & Biases
+    wandb_active = init_wandb(config)
 
     # Prepare shared directories
     sync_dir = Path(config.weight_sync_dir)
@@ -136,7 +140,7 @@ def main():
     # -----------------------------------------------------------------
     start_time = time.time()
 
-    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path)
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
 
     elapsed = time.time() - start_time
 
@@ -146,6 +150,7 @@ def main():
 
     logger.info(f"Training complete in {elapsed:.1f}s ({elapsed / 60:.1f} min)")
     logger.info(f"Final model saved to: {config.output_dir}/final_model")
+    finish_wandb(wandb_active)
 
 
 def _run_actor_subprocess(config: PipelineRLConfig) -> None:
@@ -173,6 +178,7 @@ def _run_trainer(
     weight_sync: WeightSynchronizer,
     results_dir: Path,
     done_path: Path,
+    wandb_active: bool = False,
 ) -> None:
     """Trainer loop — runs in the main process on the trainer GPU.
 
@@ -196,7 +202,8 @@ def _run_trainer(
         weight_decay=config.weight_decay,
     )
 
-    metrics = MetricsTracker(output_dir=config.output_dir)
+    metrics = MetricsTracker(output_dir=config.output_dir, wandb_enabled=wandb_active)
+    logger.info(f"W&B logging: {'enabled' if wandb_active else 'disabled'}")
     output_dir = Path(config.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     total_sequences = 0

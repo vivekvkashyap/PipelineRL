@@ -1,10 +1,11 @@
-"""Utility functions: ESS computation, token lag tracking, logging."""
+"""Utility functions: ESS computation, token lag tracking, logging, W&B integration."""
 
 import json
 import logging
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Optional
 
 import torch
 
@@ -44,11 +45,75 @@ def compute_ess(importance_weights: torch.Tensor) -> float:
     return (sum_w ** 2 / (n * sum_w2)).item()
 
 
+def init_wandb(config) -> bool:
+    """Initialize Weights & Biases run if enabled.
+
+    Returns True if wandb was successfully initialized.
+    """
+    if not config.wandb_enabled:
+        return False
+
+    try:
+        import wandb
+
+        run_name = config.wandb_run_name or None
+        wandb.init(
+            project=config.wandb_project,
+            name=run_name,
+            config={
+                # Model
+                "model_name": config.model_name,
+                "max_seq_len": config.max_seq_len,
+                "max_new_tokens": config.max_new_tokens,
+                # Actor
+                "generation_batch_size_H": config.generation_batch_size,
+                "temperature": config.temperature,
+                # Trainer
+                "train_batch_size_B": config.train_batch_size,
+                "learning_rate": config.learning_rate,
+                "weight_decay": config.weight_decay,
+                "max_grad_norm": config.max_grad_norm,
+                "total_optimizer_steps": config.total_optimizer_steps,
+                # PipelineRL
+                "importance_weight_clamp_c": config.importance_weight_clamp,
+                "ring_buffer_size": config.ring_buffer_size,
+                "length_penalty_start": config.length_penalty_start,
+                "length_penalty_value": config.length_penalty_value,
+                # Dataset
+                "dataset_name": config.dataset_name,
+            },
+        )
+        logger.info(f"W&B initialized: project={config.wandb_project}, run={wandb.run.name}")
+        return True
+    except Exception as e:
+        logger.warning(f"Failed to initialize W&B: {e}")
+        return False
+
+
+def finish_wandb(wandb_enabled: bool) -> None:
+    """Finish the W&B run."""
+    if not wandb_enabled:
+        return
+    try:
+        import wandb
+        wandb.finish()
+    except Exception:
+        pass
+
+
 @dataclass
 class MetricsTracker:
-    """Track and log training metrics over time."""
+    """Track and log training metrics to console, JSON, and W&B.
+
+    Logs are organized into structured groups for W&B:
+      - train/reward, train/loss           → training progress
+      - policyness/ess, policyness/max_token_lag, ...  → on-policyness
+      - throughput/tokens_per_s, throughput/seq_length  → speed
+      - pipeline/async_level, pipeline/mixed_policy_seqs → pipeline behavior
+    """
 
     output_dir: str = "outputs"
+    wandb_enabled: bool = False
     history: list[dict] = field(default_factory=list)
     _start_time: float = field(default_factory=time.time)
     _step_start_time: float = field(default_factory=time.time)
@@ -76,6 +141,7 @@ class MetricsTracker:
         step_time = time.time() - self._step_start_time
         self._total_tokens += batch_total_tokens
         throughput = self._total_tokens / elapsed if elapsed > 0 else 0
+        async_level = max_token_lag - min_token_lag + 1
 
         entry = {
             "step": step,
@@ -88,6 +154,7 @@ class MetricsTracker:
             "max_token_lag": max_token_lag,
             "min_token_lag": min_token_lag,
             "avg_token_lag": avg_token_lag,
+            "async_level": async_level,
             "mixed_policy_seqs": mixed_policy_seqs,
             "num_sequences": num_sequences,
             "batch_total_tokens": batch_total_tokens,
@@ -95,10 +162,7 @@ class MetricsTracker:
         }
         self.history.append(entry)
 
-        # Async level = number of weight versions spanned by sequences in batch
-        # (how many in-flight updates happened during generation of this batch)
-        async_level = max_token_lag - min_token_lag + 1
-
+        # Console logging
         logger.info(
             f"Step {step:4d} | Time: {step_time:.2f}s | "
             f"Reward: {reward:.4f} | "
@@ -114,7 +178,40 @@ class MetricsTracker:
             f"Loss: {loss:.6f}"
         )
 
+        # W&B logging — structured into groups
+        if self.wandb_enabled:
+            try:
+                import wandb
+                wandb.log(
+                    {
+                        # Training progress
+                        "train/reward": reward,
+                        "train/loss": loss,
+                        "train/step_time_s": step_time,
+                        "train/total_sequences": num_sequences,
+                        # On-policyness metrics (Figure 6a, 6b)
+                        "policyness/ess": ess,
+                        "policyness/max_token_lag": max_token_lag,
+                        "policyness/min_token_lag": min_token_lag,
+                        "policyness/avg_token_lag": avg_token_lag,
+                        # Throughput metrics (Figure 5c)
+                        "throughput/tokens_per_s": throughput,
+                        "throughput/avg_seq_length": avg_seq_length,
+                        "throughput/batch_total_tokens": batch_total_tokens,
+                        # Pipeline behavior (unique to PipelineRL)
+                        "pipeline/async_level": async_level,
+                        "pipeline/mixed_policy_seqs": mixed_policy_seqs,
+                        # Time
+                        "time/elapsed_s": elapsed,
+                        "time/step_time_s": step_time,
+                    },
+                    step=step,
+                )
+            except Exception as e:
+                logger.warning(f"W&B log failed: {e}")
+
     def save(self) -> None:
+        """Save metrics history to JSON file."""
         path = Path(self.output_dir) / "metrics.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "w") as f:
