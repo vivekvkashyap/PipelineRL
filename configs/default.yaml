@@ -1,0 +1,40 @@
+# =============================================================================
+# PipelineRL Configuration
+# Paper: "PipelineRL: Faster On-policy RL for Long Sequence Generation"
+# =============================================================================
+
+# --- Model ---
+model_name: "Qwen/Qwen2.5-0.5B"
+max_seq_len: 2048
+max_new_tokens: 1024
+
+# --- Actor (Inference) ---
+actor_gpu: 0
+generation_batch_size: 32        # H: constant number of sequences in progress
+temperature: 1.0
+top_p: 1.0
+
+# --- Trainer ---
+trainer_gpu: 1
+train_batch_size: 16             # B: sequences per optimizer step
+learning_rate: 1.0e-6
+weight_decay: 0.0
+max_grad_norm: 1.0
+total_optimizer_steps: 500
+
+# --- PipelineRL-specific ---
+importance_weight_clamp: 5.0     # c: clamp importance sampling weights
+length_penalty_start: 0.9       # start penalizing at 90% of max_seq_len
+length_penalty_value: -0.5      # soft penalty for approaching max length
+
+# --- Weight Sync ---
+weight_sync_dir: "/home/ece/hdd/pipelinerl/weights"
+
+# --- Dataset ---
+dataset_name: "openai/gsm8k"
+dataset_split: "main"
+
+# --- Logging ---
+log_interval: 1                  # log every N optimizer steps
+save_interval: 50                # save checkpoint every N steps
+output_dir: "outputs"

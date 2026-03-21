@@ -1,0 +1,29 @@
+# Minimal config for quick smoke testing
+model_name: "Qwen/Qwen2.5-0.5B"
+max_seq_len: 512
+max_new_tokens: 128
+
+actor_gpu: 0
+generation_batch_size: 4
+temperature: 1.0
+top_p: 1.0
+
+trainer_gpu: 1
+train_batch_size: 4
+learning_rate: 1.0e-6
+weight_decay: 0.0
+max_grad_norm: 1.0
+total_optimizer_steps: 3
+
+importance_weight_clamp: 5.0
+length_penalty_start: 0.9
+length_penalty_value: -0.5
+
+weight_sync_dir: "/home/ece/hdd/pipelinerl/weights_test"
+
+dataset_name: "openai/gsm8k"
+dataset_split: "main"
+
+log_interval: 1
+save_interval: 100
+output_dir: "outputs/test_run"
