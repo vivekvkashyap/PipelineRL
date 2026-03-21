@@ -1,0 +1,42 @@
+W&B initialized: project=pipelinerl, run=rare-terrain-9
+Initializing Trainer model and publishing initial weights...
+Gradient checkpointing enabled (saves memory)
+Initial weights published
+Launching Actor subprocess...
+Actor logs → outputs/actor.log
+W&B logging: enabled
+Trainer starting training loop...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+
+Step 1  |  Reward: 0.6250  |  Loss: -0.000364  |  Time: 41.42s  |  Throughput: 41.7 tok/s  |  Seq Length: 216.0 tok
+ESS: 0.9993  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0  |  Off-Policy: 1
+
+Step 2  |  Reward: 0.2500  |  Loss: 0.038616  |  Time: 6.50s  |  Throughput: 87.3 tok/s  |  Seq Length: 306.9 tok
+ESS: 0.9989  |  Token Lag: [2..2] avg=2.0  |  Async Level: 1  |  Mixed-Policy: 0  |  Off-Policy: 2
+
+Step 3  |  Reward: 0.3750  |  Loss: -0.002897  |  Time: 6.38s  |  Throughput: 114.6 tok/s  |  Seq Length: 254.8 tok
+ESS: 0.9182  |  Token Lag: [3..3] avg=3.0  |  Async Level: 1  |  Mixed-Policy: 0  |  Off-Policy: 3
+
+Step 4  |  Reward: 0.2500  |  Loss: -0.082297  |  Time: 6.90s  |  Throughput: 134.8 tok/s  |  Seq Length: 253.9 tok
+ESS: 0.9988  |  Token Lag: [3..4] avg=4.0  |  Async Level: 2  |  Mixed-Policy: 2  |  Off-Policy: 4
+
+Step 5  |  Reward: 0.6250  |  Loss: -0.177970  |  Time: 6.55s  |  Throughput: 155.6 tok/s  |  Seq Length: 286.0 tok
+ESS: 0.9644  |  Token Lag: [4..5] avg=4.9  |  Async Level: 2  |  Mixed-Policy: 7  |  Off-Policy: 5
+
+Step 6  |  Reward: 0.5000  |  Loss: -0.025790  |  Time: 6.70s  |  Throughput: 178.4 tok/s  |  Seq Length: 343.2 tok
+ESS: 0.9393  |  Token Lag: [4..6] avg=5.8  |  Async Level: 3  |  Mixed-Policy: 8  |  Off-Policy: 6
+
+Step 7  |  Reward: 0.2500  |  Loss: -0.055345  |  Time: 6.56s  |  Throughput: 191.5 tok/s  |  Seq Length: 278.5 tok
+ESS: 0.9987  |  Token Lag: [5..7] avg=5.8  |  Async Level: 3  |  Mixed-Policy: 5  |  Off-Policy: 7
+
+Step 8  |  Reward: 0.2500  |  Loss: -0.022422  |  Time: 6.46s  |  Throughput: 209.6 tok/s  |  Seq Length: 352.5 tok
+ESS: 0.9992  |  Token Lag: [5..7] avg=6.6  |  Async Level: 3  |  Mixed-Policy: 7  |  Off-Policy: 7
+
+Step 9  |  Reward: 0.5000  |  Loss: -0.030915  |  Time: 6.59s  |  Throughput: 218.4 tok/s  |  Seq Length: 276.0 tok
+ESS: 0.9841  |  Token Lag: [6..8] avg=7.0  |  Async Level: 3  |  Mixed-Policy: 7  |  Off-Policy: 8
+
+Step 10  |  Reward: 0.6250  |  Loss: -0.100829  |  Time: 6.44s  |  Throughput: 228.2 tok/s  |  Seq Length: 299.8 tok
+ESS: 0.9227  |  Token Lag: [6..8] avg=7.4  |  Async Level: 3  |  Mixed-Policy: 7  |  Off-Policy: 8
+
+Step 11  |  Reward: 0.2500  |  Loss: -0.086878  |  Time: 6.39s  |  Throughput: 237.2 tok/s  |  Seq Length: 301.6 tok
+ESS: 0.9990  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 6  |  Off-Policy: 9

@@ -1,0 +1,98 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            6e3tevfjjy7t18o79b34k0hhncdiyqyj:
+                args:
+                    - --config
+                    - configs/default.yaml
+                codePath: scripts/run.py
+                codePathLocal: scripts/run.py
+                cpu_count: 16
+                cpu_count_logical: 32
+                cudaVersion: "12.6"
+                disk:
+                    /:
+                        total: "997724282880"
+                        used: "862944518144"
+                email: vivekvkashyap10@gmail.com
+                executable: /home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/bin/python3
+                git:
+                    commit: bdc25fed51c8291c25af28b32e3bc47662e4c050
+                    remote: https://github.com/vivekvkashyap/PipelineRL.git
+                gpu: NVIDIA RTX A6000
+                gpu_count: 2
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-412f6e7e-e204-e4f0-2562-2c4e7090e756
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-adf5c0b6-fc02-d499-0343-c9a6f3340c52
+                host: system4
+                memory:
+                    total: "133640568832"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.35
+                program: /home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py
+                python: CPython 3.10.19
+                root: /home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL
+                startedAt: "2026-03-21T20:37:55.436021Z"
+                writerId: 6e3tevfjjy7t18o79b34k0hhncdiyqyj
+        m: []
+        python_version: 3.10.19
+        t:
+            "1":
+                - 1
+                - 11
+                - 49
+                - 51
+                - 71
+            "2":
+                - 1
+                - 11
+                - 41
+                - 49
+                - 51
+                - 71
+            "3":
+                - 16
+                - 61
+            "4": 3.10.19
+            "5": 0.25.1
+            "6": 4.57.6
+            "12": 0.25.1
+            "13": linux-x86_64
+dataset_name:
+    value: openai/gsm8k
+generation_batch_size_H:
+    value: 16
+importance_weight_clamp_c:
+    value: 5
+learning_rate:
+    value: 1e-06
+length_penalty_start:
+    value: 0.9
+length_penalty_value:
+    value: -0.5
+max_grad_norm:
+    value: 1
+max_new_tokens:
+    value: 512
+max_seq_len:
+    value: 1024
+model_name:
+    value: Qwen/Qwen2.5-0.5B-Instruct
+ring_buffer_size:
+    value: 256
+temperature:
+    value: 1
+total_optimizer_steps:
+    value: 500
+train_batch_size_B:
+    value: 8
+weight_decay:
+    value: 0

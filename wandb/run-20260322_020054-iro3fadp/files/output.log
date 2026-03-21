@@ -1,0 +1,81 @@
+2026-03-22 02:00:56,065 [pipelinerl] INFO: W&B initialized: project=pipelinerl, run=avid-sky-3
+2026-03-22 02:00:56,066 [pipelinerl] INFO: Initializing Trainer model and publishing initial weights...
+2026-03-22 02:00:57,828 [pipelinerl] INFO: Gradient checkpointing enabled (saves memory)
+2026-03-22 02:01:05,321 [pipelinerl] INFO: Initial weights published
+2026-03-22 02:01:05,324 [pipelinerl] INFO: Launching Actor subprocess...
+2026-03-22 02:01:05,384 [pipelinerl] INFO: W&B logging: enabled
+2026-03-22 02:01:05,385 [pipelinerl] INFO: Trainer starting training loop...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2026-03-22 02:01:11,875 [pipelinerl] INFO: Step    1 | Time: 6.49s | Reward: 0.2500 | Throughput: 83.6 tokens/s | Seq. Length: 67.9 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 1
+2026-03-22 02:01:11,876 [pipelinerl] INFO:          ESS: 0.9976 | Token Lag: [1..1] avg=1.0 | Mixed-Policy Seqs: 0 | Loss: -9.534333
+2026-03-22 02:01:17,950 [pipelinerl] INFO: Step    2 | Time: 6.07s | Reward: 0.0000 | Throughput: 158.8 tokens/s | Seq. Length: 181.5 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 2
+2026-03-22 02:01:17,950 [pipelinerl] INFO:          ESS: 0.9749 | Token Lag: [2..2] avg=2.0 | Mixed-Policy Seqs: 0 | Loss: 0.000000
+2026-03-22 02:01:17,981 [pipelinerl] INFO: [Actor] 2026-03-22 02:01:17,981 [Actor] INFO: Actor starting (CUDA_VISIBLE_DEVICES=0)
+2026-03-22 02:01:24,130 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:19 [model.py:533] Resolved architecture: Qwen2ForCausalLM
+2026-03-22 02:01:24,130 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:19 [model.py:1582] Using max model len 1024
+2026-03-22 02:01:24,132 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:19 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+2026-03-22 02:01:24,133 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:19 [vllm.py:754] Asynchronous scheduling is enabled.
+2026-03-22 02:01:24,134 [pipelinerl] INFO: [Actor] WARNING 03-22 02:01:19 [vllm.py:788] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+2026-03-22 02:01:24,135 [pipelinerl] INFO: [Actor] WARNING 03-22 02:01:19 [vllm.py:799] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+2026-03-22 02:01:24,136 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:21 [vllm.py:964] Cudagraph is disabled under eager mode
+2026-03-22 02:01:24,136 [pipelinerl] INFO: Step    3 | Time: 6.18s | Reward: 0.0000 | Throughput: 220.3 tokens/s | Seq. Length: 267.1 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 3
+2026-03-22 02:01:24,137 [pipelinerl] INFO: [Actor] INFO 03-22 02:01:21 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant
+2026-03-22 02:01:24,138 [pipelinerl] INFO:          ESS: 0.6049 | Token Lag: [3..3] avg=3.0 | Mixed-Policy Seqs: 0 | Loss: 0.000000
+2026-03-22 02:01:24,138 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:22 [core.py:103] Initializing a V1 LLM engine (v0.18.0) with config: model='Qwen/Qwen2.5-0.5B', speculative_config=None, tokenizer='Qwen/Qwen2.5-0.5B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=1024, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2.5-0.5B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+2026-03-22 02:01:24,140 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:23 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://10.32.38.167:38799 backend=nccl
+2026-03-22 02:01:24,141 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:24 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+2026-03-22 02:01:24,650 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:24 [gpu_model_runner.py:4481] Starting to load model Qwen/Qwen2.5-0.5B...
+2026-03-22 02:01:30,568 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:25 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+2026-03-22 02:01:30,570 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:25 [flash_attn.py:598] Using FlashAttention version 2
+2026-03-22 02:01:30,571 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:26 [weight_utils.py:618] No model.safetensors.index.json found in remote.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  4.20it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  4.19it/s]
+2026-03-22 02:01:30,574 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779)
+2026-03-22 02:01:30,575 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:26 [default_loader.py:384] Loading weights took 0.26 seconds
+2026-03-22 02:01:30,575 [pipelinerl] INFO: Step    4 | Time: 6.43s | Reward: 0.1250 | Throughput: 274.7 tokens/s | Seq. Length: 348.6 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 4
+2026-03-22 02:01:30,576 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:27 [gpu_model_runner.py:4566] Model loading took 0.93 GiB memory and 1.928216 seconds
+2026-03-22 02:01:30,576 [pipelinerl] INFO:          ESS: 0.8259 | Token Lag: [4..4] avg=4.0 | Mixed-Policy Seqs: 0 | Loss: -24.434618
+2026-03-22 02:01:30,578 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:29 [gpu_worker.py:456] Available KV cache memory: 39.0 GiB
+2026-03-22 02:01:30,581 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:29 [kv_cache_utils.py:1316] GPU KV cache size: 3,407,568 tokens
+2026-03-22 02:01:30,583 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:29 [kv_cache_utils.py:1321] Maximum concurrency for 1,024 tokens per request: 3327.70x
+2026-03-22 02:01:30,584 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:29 [core.py:281] init engine (profile, create kv cache, warmup model) took 2.48 seconds
+2026-03-22 02:01:37,028 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) WARNING 03-22 02:01:32 [vllm.py:788] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+2026-03-22 02:01:37,029 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) WARNING 03-22 02:01:32 [vllm.py:799] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+2026-03-22 02:01:37,030 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:32 [vllm.py:964] Cudagraph is disabled under eager mode
+2026-03-22 02:01:37,032 [pipelinerl] INFO: [Actor] 2026-03-22 02:01:32,431 [Actor] INFO: Actor initialized | batch_size(H)=16 | prompts=7473 | max_tokens=512
+2026-03-22 02:01:37,033 [pipelinerl] INFO: Step    5 | Time: 6.45s | Reward: 0.0000 | Throughput: 332.4 tokens/s | Seq. Length: 449.8 tokens/sample | Async Level: 2 | Max. Off-Policy Level: 5
+2026-03-22 02:01:37,033 [pipelinerl] INFO: [Actor] 2026-03-22 02:01:32,432 [Actor] INFO: Submitted initial batch of 16 requests
+2026-03-22 02:01:37,034 [pipelinerl] INFO:          ESS: 0.5536 | Token Lag: [4..5] avg=5.0 | Mixed-Policy Seqs: 7 | Loss: 0.000000
+2026-03-22 02:01:37,036 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:32 [gpu_model_runner.py:4700] Reloading weights inplace...
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:04<00:00,  4.86s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:04<00:00,  4.86s/it]
+2026-03-22 02:01:37,336 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779)
+2026-03-22 02:01:37,382 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:37 [gpu_model_runner.py:4727] Reloading and processing weights took 4.94 seconds
+2026-03-22 02:01:37,385 [pipelinerl] INFO: [Actor] 2026-03-22 02:01:37,385 [Actor] INFO: IN-FLIGHT UPDATE: reloaded weights to version 5 (with 16 sequences still generating)
+2026-03-22 02:01:37,401 [pipelinerl] INFO: [Actor] WARNING 03-22 02:01:37 [input_processor.py:227] Passing raw prompts to InputProcessor is deprecated and will be removed in v0.18. You should instead pass the outputs of Renderer.render_cmpl() or Renderer.render_chat().
+2026-03-22 02:01:43,818 [pipelinerl] INFO: Step    6 | Time: 6.78s | Reward: 0.1250 | Throughput: 422.0 tokens/s | Seq. Length: 712.4 tokens/sample | Async Level: 3 | Max. Off-Policy Level: 6
+2026-03-22 02:01:43,818 [pipelinerl] INFO:          ESS: 0.5073 | Token Lag: [4..6] avg=5.9 | Mixed-Policy Seqs: 8 | Loss: -246.547653
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  3.22it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  3.21it/s]
+2026-03-22 02:01:44,206 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779)
+2026-03-22 02:01:44,252 [pipelinerl] INFO: [Actor] (EngineCore pid=1299779) INFO 03-22 02:01:44 [gpu_model_runner.py:4727] Reloading and processing weights took 0.37 seconds
+2026-03-22 02:01:44,255 [pipelinerl] INFO: [Actor] 2026-03-22 02:01:44,255 [Actor] INFO: IN-FLIGHT UPDATE: reloaded weights to version 6 (with 16 sequences still generating)
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 340, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 146, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 268, in _run_trainer
+    time.sleep(0.5)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 340, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 146, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 268, in _run_trainer
+    time.sleep(0.5)
+KeyboardInterrupt

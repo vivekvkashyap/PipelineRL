@@ -1,0 +1,59 @@
+2026-03-22 02:04:15,192 [pipelinerl] INFO: W&B initialized: project=pipelinerl, run=fresh-gorge-4
+2026-03-22 02:04:15,193 [pipelinerl] INFO: Initializing Trainer model and publishing initial weights...
+2026-03-22 02:04:17,045 [pipelinerl] INFO: Gradient checkpointing enabled (saves memory)
+2026-03-22 02:04:24,581 [pipelinerl] INFO: Initial weights published
+2026-03-22 02:04:24,583 [pipelinerl] INFO: Launching Actor subprocess...
+2026-03-22 02:04:24,615 [pipelinerl] INFO: Actor logs → outputs/actor.log
+2026-03-22 02:04:24,629 [pipelinerl] INFO: W&B logging: enabled
+2026-03-22 02:04:24,630 [pipelinerl] INFO: Trainer starting training loop...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2026-03-22 02:05:09,621 [pipelinerl] INFO: Step    1 | Time: 44.99s | Reward: 0.1250 | Throughput: 50.8 tokens/s | Seq. Length: 285.9 tokens/sample | Async Level: 6 | Max. Off-Policy Level: 1
+2026-03-22 02:05:09,621 [pipelinerl] INFO:          ESS: 0.8537 | Token Lag: [-4..1] avg=1.0 | Mixed-Policy Seqs: 6 | Loss: -39.752316
+2026-03-22 02:05:16,777 [pipelinerl] INFO: Step    2 | Time: 7.15s | Reward: 0.0000 | Throughput: 122.4 tokens/s | Seq. Length: 512.0 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 2
+2026-03-22 02:05:16,778 [pipelinerl] INFO:          ESS: 0.5711 | Token Lag: [2..2] avg=2.0 | Mixed-Policy Seqs: 0 | Loss: 0.000000
+2026-03-22 02:05:23,206 [pipelinerl] INFO: Step    3 | Time: 6.43s | Reward: 0.1250 | Throughput: 143.0 tokens/s | Seq. Length: 249.4 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 3
+2026-03-22 02:05:23,206 [pipelinerl] INFO:          ESS: 0.9713 | Token Lag: [3..3] avg=3.0 | Mixed-Policy Seqs: 0 | Loss: -33.076954
+2026-03-22 02:05:29,961 [pipelinerl] INFO: Step    4 | Time: 6.75s | Reward: 0.2500 | Throughput: 157.3 tokens/s | Seq. Length: 237.5 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 4
+2026-03-22 02:05:29,961 [pipelinerl] INFO:          ESS: 0.6631 | Token Lag: [4..4] avg=4.0 | Mixed-Policy Seqs: 0 | Loss: -73.847267
+2026-03-22 02:05:36,636 [pipelinerl] INFO: Step    5 | Time: 6.67s | Reward: 0.1250 | Throughput: 185.6 tokens/s | Seq. Length: 385.4 tokens/sample | Async Level: 2 | Max. Off-Policy Level: 5
+2026-03-22 02:05:36,636 [pipelinerl] INFO:          ESS: 0.5096 | Token Lag: [4..5] avg=5.0 | Mixed-Policy Seqs: 7 | Loss: -153.851257
+2026-03-22 02:05:43,124 [pipelinerl] INFO: Step    6 | Time: 6.49s | Reward: 0.0000 | Throughput: 199.0 tokens/s | Seq. Length: 282.2 tokens/sample | Async Level: 2 | Max. Off-Policy Level: 6
+2026-03-22 02:05:43,125 [pipelinerl] INFO:          ESS: 0.5951 | Token Lag: [5..6] avg=5.6 | Mixed-Policy Seqs: 5 | Loss: 0.000000
+2026-03-22 02:05:49,756 [pipelinerl] INFO: Step    7 | Time: 6.63s | Reward: 0.1250 | Throughput: 209.8 tokens/s | Seq. Length: 280.6 tokens/sample | Async Level: 3 | Max. Off-Policy Level: 7
+2026-03-22 02:05:49,757 [pipelinerl] INFO:          ESS: 0.5919 | Token Lag: [5..7] avg=6.4 | Mixed-Policy Seqs: 4 | Loss: -66.120804
+2026-03-22 02:05:56,392 [pipelinerl] INFO: Step    8 | Time: 6.63s | Reward: 0.1250 | Throughput: 227.8 tokens/s | Seq. Length: 380.5 tokens/sample | Async Level: 4 | Max. Off-Policy Level: 8
+2026-03-22 02:05:56,392 [pipelinerl] INFO:          ESS: 0.5384 | Token Lag: [5..8] avg=6.9 | Mixed-Policy Seqs: 6 | Loss: -85.976112
+2026-03-22 02:06:03,080 [pipelinerl] INFO: Step    9 | Time: 6.69s | Reward: 0.1250 | Throughput: 243.7 tokens/s | Seq. Length: 385.0 tokens/sample | Async Level: 3 | Max. Off-Policy Level: 8
+2026-03-22 02:06:03,081 [pipelinerl] INFO:          ESS: 0.4981 | Token Lag: [6..8] avg=7.8 | Mixed-Policy Seqs: 8 | Loss: -148.931335
+2026-03-22 02:06:09,748 [pipelinerl] INFO: Step   10 | Time: 6.67s | Reward: 0.2500 | Throughput: 250.9 tokens/s | Seq. Length: 298.9 tokens/sample | Async Level: 3 | Max. Off-Policy Level: 9
+2026-03-22 02:06:09,749 [pipelinerl] INFO:          ESS: 0.5038 | Token Lag: [7..9] avg=7.8 | Mixed-Policy Seqs: 5 | Loss: -228.519287
+2026-03-22 02:06:16,374 [pipelinerl] INFO: Step   11 | Time: 6.62s | Reward: 0.2500 | Throughput: 252.0 tokens/s | Seq. Length: 222.4 tokens/sample | Async Level: 3 | Max. Off-Policy Level: 9
+2026-03-22 02:06:16,374 [pipelinerl] INFO:          ESS: 0.4730 | Token Lag: [7..9] avg=8.1 | Mixed-Policy Seqs: 5 | Loss: -212.163651
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 338, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 299, in _run_trainer
+    weight_sync.publish_weights(model, step=step)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/src/pipelinerl/weight_sync.py", line 65, in publish_weights
+    model.save_pretrained(save_dir, safe_serialization=True)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4173, in save_pretrained
+    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/safetensors/torch.py", line 307, in save_file
+    serialize_file(_flatten(tensors), filename, metadata=metadata)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 338, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 299, in _run_trainer
+    weight_sync.publish_weights(model, step=step)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/src/pipelinerl/weight_sync.py", line 65, in publish_weights
+    model.save_pretrained(save_dir, safe_serialization=True)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4173, in save_pretrained
+    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/safetensors/torch.py", line 307, in save_file
+    serialize_file(_flatten(tensors), filename, metadata=metadata)
+KeyboardInterrupt

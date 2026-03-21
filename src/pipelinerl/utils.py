@@ -17,7 +17,7 @@ def setup_logging(output_dir: str) -> None:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+        format="%(message)s",
         handlers=[
             logging.StreamHandler(),
             logging.FileHandler(Path(output_dir) / "train.log"),
@@ -164,18 +164,9 @@ class MetricsTracker:
 
         # Console logging
         logger.info(
-            f"Step {step:4d} | Time: {step_time:.2f}s | "
-            f"Reward: {reward:.4f} | "
-            f"Throughput: {throughput:.1f} tokens/s | "
-            f"Seq. Length: {avg_seq_length:.1f} tokens/sample | "
-            f"Async Level: {async_level} | "
-            f"Max. Off-Policy Level: {max_token_lag}"
-        )
-        logger.info(
-            f"         ESS: {ess:.4f} | "
-            f"Token Lag: [{min_token_lag}..{max_token_lag}] avg={avg_token_lag:.1f} | "
-            f"Mixed-Policy Seqs: {mixed_policy_seqs} | "
-            f"Loss: {loss:.6f}"
+            f"\n"
+            f"Step {step}  |  Reward: {reward:.4f}  |  Loss: {loss:.6f}  |  Time: {step_time:.2f}s  |  Throughput: {throughput:.1f} tok/s  |  Seq Length: {avg_seq_length:.1f} tok\n"
+            f"ESS: {ess:.4f}  |  Token Lag: [{min_token_lag}..{max_token_lag}] avg={avg_token_lag:.1f}  |  Async Level: {async_level}  |  Mixed-Policy: {mixed_policy_seqs}  |  Off-Policy: {max_token_lag}"
         )
 
         # W&B logging — structured into groups

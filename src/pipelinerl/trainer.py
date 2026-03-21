@@ -172,11 +172,17 @@ def compute_reinforce_loss(
 
         # -----------------------------------------------------------------
         # REINFORCE loss for this sequence (Eq. 5):
-        #   loss_j = -Σ_t w_t * (R - baseline) * log π_θ(y_t | x, y_{<t})
+        #   loss_j = -(1/T_j) Σ_t w_t * (R - baseline) * log π_θ(y_t)
+        #
+        # We normalize by response_len (T_j) per sequence to keep the
+        # loss magnitude stable regardless of sequence length. This is
+        # standard practice in REINFORCE for LLMs (GRPO, DeepSeek-R1).
+        # Without this, the loss scales linearly with sequence length
+        # and explodes for long sequences.
         # -----------------------------------------------------------------
         advantage = advantages[orig_idx].to(device)
         seq_loss = -(importance_weights * advantage * current_token_log_probs).sum()
-        total_loss = total_loss + seq_loss
+        total_loss = total_loss + seq_loss / response_len
 
     num_valid = len(seq_indices)
     if num_valid > 0:

@@ -14,7 +14,7 @@ class PipelineRLConfig:
     """
 
     # Model
-    model_name: str = "Qwen/Qwen2.5-0.5B"
+    model_name: str = "Qwen/Qwen2.5-0.5B-Instruct"
     max_seq_len: int = 2048
     max_new_tokens: int = 1024
 
@@ -31,6 +31,7 @@ class PipelineRLConfig:
     weight_decay: float = 0.0
     max_grad_norm: float = 1.0
     total_optimizer_steps: int = 500
+    gradient_checkpointing: bool = True
 
     # PipelineRL-specific
     importance_weight_clamp: float = 5.0  # c in Eq. 5

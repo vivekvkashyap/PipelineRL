@@ -1,0 +1,39 @@
+2026-03-22 01:57:43,869 [pipelinerl] INFO: W&B initialized: project=pipelinerl, run=whole-darkness-2
+2026-03-22 01:57:43,869 [pipelinerl] INFO: Initializing Trainer model and publishing initial weights...
+2026-03-22 01:57:53,171 [pipelinerl] INFO: Initial weights published
+2026-03-22 01:57:53,173 [pipelinerl] INFO: Launching Actor subprocess...
+2026-03-22 01:57:53,219 [pipelinerl] INFO: W&B logging: enabled
+2026-03-22 01:57:53,221 [pipelinerl] INFO: Trainer starting training loop...
+2026-03-22 01:58:00,066 [pipelinerl] INFO: Step    1 | Time: 6.84s | Reward: 0.1250 | Throughput: 291.4 tokens/s | Seq. Length: 124.7 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 1
+2026-03-22 01:58:00,067 [pipelinerl] INFO:          ESS: 0.9808 | Token Lag: [1..1] avg=1.0 | Mixed-Policy Seqs: 0 | Loss: -14.840734
+2026-03-22 01:58:06,744 [pipelinerl] INFO: [Actor] 2026-03-22 01:58:05,853 [Actor] INFO: Actor starting (CUDA_VISIBLE_DEVICES=0)
+2026-03-22 01:58:06,749 [pipelinerl] INFO: Step    2 | Time: 6.68s | Reward: 0.0625 | Throughput: 511.6 tokens/s | Seq. Length: 307.9 tokens/sample | Async Level: 1 | Max. Off-Policy Level: 2
+2026-03-22 01:58:06,749 [pipelinerl] INFO:          ESS: 0.6961 | Token Lag: [2..2] avg=2.0 | Mixed-Policy Seqs: 0 | Loss: -13.264022
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 337, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 288, in _run_trainer
+    loss.backward()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 630, in backward
+    torch.autograd.backward(
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.23 GiB. GPU 0 has a total capacity of 47.42 GiB of which 2.53 GiB is free. Including non-PyTorch memory, this process has 44.85 GiB memory in use. Of the allocated memory 38.56 GiB is allocated by PyTorch, and 5.97 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 337, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 288, in _run_trainer
+    loss.backward()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 630, in backward
+    torch.autograd.backward(
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.23 GiB. GPU 0 has a total capacity of 47.42 GiB of which 2.53 GiB is free. Including non-PyTorch memory, this process has 44.85 GiB memory in use. Of the allocated memory 38.56 GiB is allocated by PyTorch, and 5.97 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,47 @@
+W&B initialized: project=pipelinerl, run=hardy-microwave-8
+Initializing Trainer model and publishing initial weights...
+Gradient checkpointing enabled (saves memory)
+Initial weights published
+Launching Actor subprocess...
+Actor logs → outputs/actor.log
+W&B logging: enabled
+Trainer starting training loop...
+Ring buffer: skipped 18 stale sequences (jumped to read_cursor=18)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+
+  Step    1  |  Reward: 0.2500  |  Loss: -0.072629  |  Time: 6.86s  |  Throughput: 397.2 tok/s  |  Seq Length: 340.9 tok
+  ESS: 0.9987  |  Token Lag: [-4..1] avg=-2.5  |  Async Level: 6  |  Mixed-Policy: 4  |  Off-Policy: 1
+
+  Step    2  |  Reward: 0.5000  |  Loss: -0.038764  |  Time: 6.12s  |  Throughput: 376.8 tok/s  |  Seq Length: 271.0 tok
+  ESS: 0.9988  |  Token Lag: [-3..-2] avg=-2.9  |  Async Level: 2  |  Mixed-Policy: 1  |  Off-Policy: -2
+
+  Step    3  |  Reward: 0.2500  |  Loss: -0.038480  |  Time: 6.20s  |  Throughput: 407.4 tok/s  |  Seq Length: 365.8 tok
+  ESS: 0.9989  |  Token Lag: [-2..-2] avg=-2.0  |  Async Level: 1  |  Mixed-Policy: 0  |  Off-Policy: -2
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 338, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 299, in _run_trainer
+    weight_sync.publish_weights(model, step=step)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/src/pipelinerl/weight_sync.py", line 65, in publish_weights
+    model.save_pretrained(save_dir, safe_serialization=True)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4173, in save_pretrained
+    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/safetensors/torch.py", line 307, in save_file
+    serialize_file(_flatten(tensors), filename, metadata=metadata)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 338, in <module>
+    main()
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 143, in main
+    _run_trainer(config, model, tokenizer, weight_sync, results_dir, done_path, wandb_active)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/scripts/run.py", line 299, in _run_trainer
+    weight_sync.publish_weights(model, step=step)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/src/pipelinerl/weight_sync.py", line 65, in publish_weights
+    model.save_pretrained(save_dir, safe_serialization=True)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4173, in save_pretrained
+    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)
+  File "/home/ece/Pavan/vivek_3/new_project/paper_impl/PipelineRL/.venv/lib/python3.10/site-packages/safetensors/torch.py", line 307, in save_file
+    serialize_file(_flatten(tensors), filename, metadata=metadata)
+KeyboardInterrupt

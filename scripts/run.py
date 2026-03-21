@@ -79,12 +79,14 @@ def main():
     # Initialize Weights & Biases
     wandb_active = init_wandb(config)
 
-    # Prepare shared directories
+    # Clean up shared directories from previous runs to avoid stale data
+    import shutil
     sync_dir = Path(config.weight_sync_dir)
+    if sync_dir.exists():
+        shutil.rmtree(sync_dir)
     results_dir = sync_dir / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
     done_path = sync_dir / "done"
-    done_path.unlink(missing_ok=True)  # clean up from previous runs
 
     # Initialize weight synchronizer and publish initial weights
     weight_sync = WeightSynchronizer(config.weight_sync_dir)
@@ -99,6 +101,9 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         config.model_name, dtype=torch.bfloat16, trust_remote_code=True,
     ).to("cuda:0")
+    if config.gradient_checkpointing:
+        model.gradient_checkpointing_enable()
+        logger.info("Gradient checkpointing enabled (saves memory)")
     tokenizer = AutoTokenizer.from_pretrained(
         config.model_name, trust_remote_code=True,
     )
@@ -118,22 +123,19 @@ def main():
     actor_env = os.environ.copy()
     actor_env["CUDA_VISIBLE_DEVICES"] = str(config.actor_gpu)
 
+    # Actor logs go to a separate file to keep Trainer output clean.
+    # View Actor logs with: tail -f outputs/actor.log
+    actor_log_path = Path(config.output_dir) / "actor.log"
+    actor_log_path.parent.mkdir(parents=True, exist_ok=True)
+    actor_log_file = open(actor_log_path, "w")
+
     actor_proc = subprocess.Popen(
         [sys.executable, __file__, "--config", args.config, "--actor-only"],
         env=actor_env,
-        stdout=subprocess.PIPE,
+        stdout=actor_log_file,
         stderr=subprocess.STDOUT,
     )
-
-    # Stream Actor logs in a background thread
-    def _stream_actor_logs():
-        for line in actor_proc.stdout:
-            text = line.decode("utf-8", errors="replace").rstrip()
-            if text:
-                logger.info(f"[Actor] {text}")
-
-    log_thread = Thread(target=_stream_actor_logs, daemon=True)
-    log_thread.start()
+    logger.info(f"Actor logs → {actor_log_path}")
 
     # -----------------------------------------------------------------
     # Run Trainer in the main process (Algorithm 2, Trainer Process)
@@ -147,6 +149,7 @@ def main():
     # Signal Actor to stop
     done_path.touch()
     actor_proc.wait(timeout=60)
+    actor_log_file.close()
 
     logger.info(f"Training complete in {elapsed:.1f}s ({elapsed / 60:.1f} min)")
     logger.info(f"Final model saved to: {config.output_dir}/final_model")
