@@ -10,18 +10,19 @@ max_new_tokens: 512
 
 # --- Actor (Inference) ---
 actor_gpu: 0
-generation_batch_size: 16        # H: constant number of sequences in progress
+generation_batch_size: 32        # H: constant number of sequences in progress
 temperature: 1.0
 top_p: 1.0
 
 # --- Trainer ---
 trainer_gpu: 1
-train_batch_size: 8              # B: sequences per optimizer step
+train_batch_size: 8               # B: micro-batch size per forward pass
 learning_rate: 1.0e-6
 weight_decay: 0.0
 max_grad_norm: 1.0
 total_optimizer_steps: 500
 gradient_checkpointing: true     # save GPU memory at cost of speed
+gradient_accumulation_steps: 4   # effective batch = B * 4 = 32 sequences
 
 # --- PipelineRL-specific ---
 importance_weight_clamp: 5.0     # c: clamp importance sampling weights

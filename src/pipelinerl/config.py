@@ -32,6 +32,7 @@ class PipelineRLConfig:
     max_grad_norm: float = 1.0
     total_optimizer_steps: int = 500
     gradient_checkpointing: bool = True
+    gradient_accumulation_steps: int = 4  # effective batch = B * this
 
     # PipelineRL-specific
     importance_weight_clamp: float = 5.0  # c in Eq. 5

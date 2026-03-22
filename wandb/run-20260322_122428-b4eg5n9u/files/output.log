@@ -1,0 +1,393 @@
+W&B initialized: project=pipelinerl, run=wandering-pond-10
+Initializing Trainer model and publishing initial weights...
+Gradient checkpointing enabled (saves memory)
+Initial weights published
+Launching Actor subprocess...
+Actor logs → outputs/actor.log
+W&B logging: enabled
+Trainer starting training loop...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+
+Step 1  |  Reward: 0.5000  |  Loss: -0.047789  |  Time: 47.45s  |  Throughput: 178.9 tok/s  |  Seq Length: 265.3 tok
+ESS: 0.9622  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+
+Step 2  |  Reward: 0.3750  |  Loss: -0.042198  |  Time: 8.95s  |  Throughput: 335.3 tok/s  |  Seq Length: 325.6 tok
+ESS: 0.9990  |  Token Lag: [2..2] avg=2.0  |  Async Level: 1  |  Mixed-Policy: 0
+
+Step 3  |  Reward: 0.5000  |  Loss: -0.091380  |  Time: 9.21s  |  Throughput: 428.8 tok/s  |  Seq Length: 288.3 tok
+ESS: 0.9780  |  Token Lag: [2..3] avg=3.0  |  Async Level: 2  |  Mixed-Policy: 12
+
+Step 4  |  Reward: 0.4688  |  Loss: -0.079071  |  Time: 9.13s  |  Throughput: 493.1 tok/s  |  Seq Length: 272.7 tok
+ESS: 0.9953  |  Token Lag: [2..4] avg=3.6  |  Async Level: 3  |  Mixed-Policy: 20
+
+Step 5  |  Reward: 0.3438  |  Loss: -0.043296  |  Time: 9.61s  |  Throughput: 544.1 tok/s  |  Seq Length: 282.6 tok
+ESS: 0.9990  |  Token Lag: [3..5] avg=3.9  |  Async Level: 3  |  Mixed-Policy: 27
+
+Step 6  |  Reward: 0.4062  |  Loss: -0.070615  |  Time: 8.81s  |  Throughput: 592.2 tok/s  |  Seq Length: 289.9 tok
+ESS: 0.8607  |  Token Lag: [3..5] avg=4.1  |  Async Level: 3  |  Mixed-Policy: 18
+
+Step 7  |  Reward: 0.5000  |  Loss: -0.079229  |  Time: 9.18s  |  Throughput: 638.5 tok/s  |  Seq Length: 317.8 tok
+ESS: 0.9991  |  Token Lag: [3..5] avg=4.6  |  Async Level: 3  |  Mixed-Policy: 24
+
+Step 8  |  Reward: 0.3438  |  Loss: -0.040639  |  Time: 9.33s  |  Throughput: 675.4 tok/s  |  Seq Length: 315.1 tok
+ESS: 0.9792  |  Token Lag: [4..5] avg=4.7  |  Async Level: 2  |  Mixed-Policy: 23
+
+Step 9  |  Reward: 0.3750  |  Loss: -0.094670  |  Time: 8.74s  |  Throughput: 707.4 tok/s  |  Seq Length: 305.1 tok
+ESS: 0.9893  |  Token Lag: [4..6] avg=5.0  |  Async Level: 3  |  Mixed-Policy: 24
+
+Step 10  |  Reward: 0.3438  |  Loss: -0.013331  |  Time: 8.92s  |  Throughput: 736.8 tok/s  |  Seq Length: 315.8 tok
+ESS: 0.9988  |  Token Lag: [4..6] avg=5.3  |  Async Level: 3  |  Mixed-Policy: 23
+
+Step 11  |  Reward: 0.4062  |  Loss: -0.160978  |  Time: 9.06s  |  Throughput: 762.7 tok/s  |  Seq Length: 320.9 tok
+ESS: 0.9470  |  Token Lag: [4..6] avg=5.5  |  Async Level: 3  |  Mixed-Policy: 22
+
+Step 12  |  Reward: 0.4375  |  Loss: -0.057471  |  Time: 8.72s  |  Throughput: 783.8 tok/s  |  Seq Length: 304.8 tok
+ESS: 0.9666  |  Token Lag: [5..6] avg=5.8  |  Async Level: 2  |  Mixed-Policy: 25
+
+Step 13  |  Reward: 0.3125  |  Loss: -0.044082  |  Time: 9.14s  |  Throughput: 802.9 tok/s  |  Seq Length: 317.2 tok
+ESS: 0.9566  |  Token Lag: [5..7] avg=6.0  |  Async Level: 3  |  Mixed-Policy: 24
+
+Step 14  |  Reward: 0.3750  |  Loss: -0.094416  |  Time: 8.68s  |  Throughput: 824.2 tok/s  |  Seq Length: 327.4 tok
+ESS: 0.9941  |  Token Lag: [5..7] avg=6.3  |  Async Level: 3  |  Mixed-Policy: 25
+
+Step 15  |  Reward: 0.6250  |  Loss: -0.062620  |  Time: 9.12s  |  Throughput: 835.6 tok/s  |  Seq Length: 297.3 tok
+ESS: 0.9901  |  Token Lag: [5..7] avg=6.3  |  Async Level: 3  |  Mixed-Policy: 19
+
+Step 16  |  Reward: 0.4688  |  Loss: -0.059087  |  Time: 9.01s  |  Throughput: 848.9 tok/s  |  Seq Length: 311.3 tok
+ESS: 0.9677  |  Token Lag: [6..8] avg=6.7  |  Async Level: 3  |  Mixed-Policy: 22
+
+Step 17  |  Reward: 0.5938  |  Loss: -0.093363  |  Time: 9.04s  |  Throughput: 855.4 tok/s  |  Seq Length: 278.8 tok
+ESS: 0.9683  |  Token Lag: [6..8] avg=6.9  |  Async Level: 3  |  Mixed-Policy: 25
+
+Step 18  |  Reward: 0.5312  |  Loss: -0.111993  |  Time: 8.86s  |  Throughput: 865.1 tok/s  |  Seq Length: 297.9 tok
+ESS: 0.9156  |  Token Lag: [6..8] avg=7.2  |  Async Level: 3  |  Mixed-Policy: 21
+
+Step 19  |  Reward: 0.3438  |  Loss: -0.068900  |  Time: 9.14s  |  Throughput: 872.6 tok/s  |  Seq Length: 296.5 tok
+ESS: 0.9185  |  Token Lag: [6..8] avg=7.4  |  Async Level: 3  |  Mixed-Policy: 19
+Ring buffer: skipped 1 stale sequences (jumped to read_cursor=609)
+
+Step 20  |  Reward: 0.5625  |  Loss: -0.073464  |  Time: 9.19s  |  Throughput: 881.8 tok/s  |  Seq Length: 313.5 tok
+ESS: 0.9973  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=652)
+
+Step 21  |  Reward: 0.4062  |  Loss: -0.040138  |  Time: 8.86s  |  Throughput: 892.5 tok/s  |  Seq Length: 320.0 tok
+ESS: 0.9690  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 25
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=696)
+
+Step 22  |  Reward: 0.3125  |  Loss: -0.049276  |  Time: 8.69s  |  Throughput: 900.4 tok/s  |  Seq Length: 301.4 tok
+ESS: 0.9922  |  Token Lag: [7..8] avg=7.7  |  Async Level: 2  |  Mixed-Policy: 22
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=733)
+
+Step 23  |  Reward: 0.5312  |  Loss: -0.051569  |  Time: 9.07s  |  Throughput: 905.8 tok/s  |  Seq Length: 296.7 tok
+ESS: 0.9775  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 27
+Ring buffer: skipped 15 stale sequences (jumped to read_cursor=780)
+
+Step 24  |  Reward: 0.5000  |  Loss: -0.079918  |  Time: 8.89s  |  Throughput: 910.9 tok/s  |  Seq Length: 291.9 tok
+ESS: 0.9820  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 25
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=819)
+
+Step 25  |  Reward: 0.5000  |  Loss: -0.056845  |  Time: 8.78s  |  Throughput: 915.1 tok/s  |  Seq Length: 285.2 tok
+ESS: 0.9823  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=859)
+
+Step 26  |  Reward: 0.4375  |  Loss: -0.039596  |  Time: 8.54s  |  Throughput: 922.0 tok/s  |  Seq Length: 302.7 tok
+ESS: 0.9879  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=899)
+
+Step 27  |  Reward: 0.3125  |  Loss: -0.073377  |  Time: 9.09s  |  Throughput: 927.8 tok/s  |  Seq Length: 312.6 tok
+ESS: 0.9246  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=944)
+
+Step 28  |  Reward: 0.4062  |  Loss: -0.048223  |  Time: 9.11s  |  Throughput: 934.6 tok/s  |  Seq Length: 326.5 tok
+ESS: 0.9870  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 27
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=985)
+
+Step 29  |  Reward: 0.4688  |  Loss: -0.048019  |  Time: 8.83s  |  Throughput: 936.1 tok/s  |  Seq Length: 272.1 tok
+ESS: 0.9900  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=1022)
+
+Step 30  |  Reward: 0.4688  |  Loss: -0.073572  |  Time: 9.04s  |  Throughput: 943.2 tok/s  |  Seq Length: 332.6 tok
+ESS: 0.9823  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 17 stale sequences (jumped to read_cursor=1071)
+
+Step 31  |  Reward: 0.4062  |  Loss: -0.030527  |  Time: 9.13s  |  Throughput: 950.6 tok/s  |  Seq Length: 343.0 tok
+ESS: 0.9270  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 27
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=1112)
+
+Step 32  |  Reward: 0.3125  |  Loss: -0.061021  |  Time: 9.14s  |  Throughput: 955.1 tok/s  |  Seq Length: 316.7 tok
+ESS: 0.9013  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=1157)
+
+Step 33  |  Reward: 0.4688  |  Loss: -0.046358  |  Time: 9.08s  |  Throughput: 957.0 tok/s  |  Seq Length: 291.7 tok
+ESS: 0.9991  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 25
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=1201)
+
+Step 34  |  Reward: 0.5625  |  Loss: -0.056460  |  Time: 8.91s  |  Throughput: 964.1 tok/s  |  Seq Length: 342.4 tok
+ESS: 0.9243  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 29
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=1245)
+
+Step 35  |  Reward: 0.5000  |  Loss: -0.080869  |  Time: 8.77s  |  Throughput: 967.2 tok/s  |  Seq Length: 298.1 tok
+ESS: 0.9990  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 26
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=1282)
+
+Step 36  |  Reward: 0.6250  |  Loss: -0.059687  |  Time: 8.68s  |  Throughput: 972.2 tok/s  |  Seq Length: 319.8 tok
+ESS: 0.9772  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=1327)
+
+Step 37  |  Reward: 0.3125  |  Loss: -0.057573  |  Time: 9.24s  |  Throughput: 976.0 tok/s  |  Seq Length: 325.0 tok
+ESS: 0.9685  |  Token Lag: [7..8] avg=7.9  |  Async Level: 2  |  Mixed-Policy: 30
+Ring buffer: skipped 10 stale sequences (jumped to read_cursor=1369)
+
+Step 38  |  Reward: 0.3750  |  Loss: -0.054324  |  Time: 8.82s  |  Throughput: 976.9 tok/s  |  Seq Length: 279.1 tok
+ESS: 0.9655  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=1408)
+
+Step 39  |  Reward: 0.4688  |  Loss: -0.099875  |  Time: 8.61s  |  Throughput: 979.6 tok/s  |  Seq Length: 296.4 tok
+ESS: 0.9293  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=1446)
+
+Step 40  |  Reward: 0.4062  |  Loss: -0.049576  |  Time: 8.74s  |  Throughput: 981.8 tok/s  |  Seq Length: 293.9 tok
+ESS: 0.9985  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=1486)
+
+Step 41  |  Reward: 0.4688  |  Loss: -0.019363  |  Time: 8.99s  |  Throughput: 983.9 tok/s  |  Seq Length: 302.3 tok
+ESS: 0.9924  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 22
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=1524)
+
+Step 42  |  Reward: 0.4062  |  Loss: -0.056623  |  Time: 9.29s  |  Throughput: 985.6 tok/s  |  Seq Length: 308.7 tok
+ESS: 0.8915  |  Token Lag: [7..9] avg=8.3  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 14 stale sequences (jumped to read_cursor=1570)
+
+Step 43  |  Reward: 0.3750  |  Loss: -0.068107  |  Time: 8.54s  |  Throughput: 990.9 tok/s  |  Seq Length: 332.4 tok
+ESS: 0.9249  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=1611)
+
+Step 44  |  Reward: 0.5938  |  Loss: -0.050123  |  Time: 8.56s  |  Throughput: 992.0 tok/s  |  Seq Length: 280.4 tok
+ESS: 0.9970  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=1649)
+
+Step 45  |  Reward: 0.4688  |  Loss: -0.072450  |  Time: 8.66s  |  Throughput: 995.4 tok/s  |  Seq Length: 316.1 tok
+ESS: 0.9988  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=1689)
+
+Step 46  |  Reward: 0.4688  |  Loss: -0.043043  |  Time: 9.11s  |  Throughput: 998.0 tok/s  |  Seq Length: 319.5 tok
+ESS: 0.9990  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=1732)
+
+Step 47  |  Reward: 0.1562  |  Loss: -0.026886  |  Time: 8.48s  |  Throughput: 1003.7 tok/s  |  Seq Length: 347.0 tok
+ESS: 0.9970  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 4 stale sequences (jumped to read_cursor=1768)
+
+Step 48  |  Reward: 0.6250  |  Loss: -0.118744  |  Time: 8.87s  |  Throughput: 1005.7 tok/s  |  Seq Length: 307.0 tok
+ESS: 0.8991  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=1808)
+
+Step 49  |  Reward: 0.4688  |  Loss: -0.046894  |  Time: 9.09s  |  Throughput: 1007.0 tok/s  |  Seq Length: 305.8 tok
+ESS: 0.9972  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 21
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=1853)
+
+Step 50  |  Reward: 0.4062  |  Loss: -0.052353  |  Time: 9.66s  |  Throughput: 1007.1 tok/s  |  Seq Length: 305.1 tok
+ESS: 0.9681  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Saved checkpoint to outputs/checkpoint_step_50
+Ring buffer: skipped 20 stale sequences (jumped to read_cursor=1905)
+
+Step 51  |  Reward: 0.5625  |  Loss: -0.078948  |  Time: 8.73s  |  Throughput: 1004.1 tok/s  |  Seq Length: 278.2 tok
+ESS: 0.9884  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=1946)
+
+Step 52  |  Reward: 0.4688  |  Loss: -0.052851  |  Time: 9.00s  |  Throughput: 1004.7 tok/s  |  Seq Length: 292.3 tok
+ESS: 0.9988  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=1984)
+
+Step 53  |  Reward: 0.5000  |  Loss: -0.054512  |  Time: 9.11s  |  Throughput: 1006.6 tok/s  |  Seq Length: 315.7 tok
+ESS: 0.9989  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=2028)
+
+Step 54  |  Reward: 0.3750  |  Loss: -0.067886  |  Time: 8.68s  |  Throughput: 1008.4 tok/s  |  Seq Length: 302.6 tok
+ESS: 0.9989  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=2069)
+
+Step 55  |  Reward: 0.5000  |  Loss: -0.028946  |  Time: 9.11s  |  Throughput: 1009.6 tok/s  |  Seq Length: 307.5 tok
+ESS: 0.9988  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 10 stale sequences (jumped to read_cursor=2111)
+
+Step 56  |  Reward: 0.5000  |  Loss: -0.021842  |  Time: 8.71s  |  Throughput: 1010.8 tok/s  |  Seq Length: 295.8 tok
+ESS: 0.9972  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 25
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=2148)
+
+Step 57  |  Reward: 0.4375  |  Loss: -0.091837  |  Time: 8.97s  |  Throughput: 1013.2 tok/s  |  Seq Length: 324.8 tok
+ESS: 0.9986  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 27
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=2189)
+
+Step 58  |  Reward: 0.4375  |  Loss: -0.049989  |  Time: 8.69s  |  Throughput: 1015.0 tok/s  |  Seq Length: 306.0 tok
+ESS: 0.9746  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 21
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=2230)
+
+Step 59  |  Reward: 0.3750  |  Loss: -0.072532  |  Time: 9.16s  |  Throughput: 1017.1 tok/s  |  Seq Length: 327.2 tok
+ESS: 0.9840  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 25
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=2275)
+
+Step 60  |  Reward: 0.4688  |  Loss: -0.057678  |  Time: 9.09s  |  Throughput: 1017.9 tok/s  |  Seq Length: 304.4 tok
+ESS: 0.9797  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=2318)
+
+Step 61  |  Reward: 0.4375  |  Loss: -0.041321  |  Time: 8.94s  |  Throughput: 1017.9 tok/s  |  Seq Length: 285.0 tok
+ESS: 0.9989  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=2363)
+
+Step 62  |  Reward: 0.4062  |  Loss: -0.000056  |  Time: 8.99s  |  Throughput: 1020.0 tok/s  |  Seq Length: 324.3 tok
+ESS: 0.9933  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 28
+Ring buffer: skipped 14 stale sequences (jumped to read_cursor=2409)
+
+Step 63  |  Reward: 0.4375  |  Loss: -0.061848  |  Time: 8.84s  |  Throughput: 1020.2 tok/s  |  Seq Length: 285.2 tok
+ESS: 0.9988  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=2449)
+
+Step 64  |  Reward: 0.2188  |  Loss: -0.059345  |  Time: 9.20s  |  Throughput: 1022.8 tok/s  |  Seq Length: 342.7 tok
+ESS: 0.9504  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 27
+Ring buffer: skipped 18 stale sequences (jumped to read_cursor=2499)
+
+Step 65  |  Reward: 0.5938  |  Loss: -0.100263  |  Time: 8.82s  |  Throughput: 1024.8 tok/s  |  Seq Length: 322.6 tok
+ESS: 0.9090  |  Token Lag: [7..8] avg=7.6  |  Async Level: 2  |  Mixed-Policy: 20
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=2539)
+
+Step 66  |  Reward: 0.5312  |  Loss: -0.032367  |  Time: 8.96s  |  Throughput: 1024.5 tok/s  |  Seq Length: 280.7 tok
+ESS: 0.9989  |  Token Lag: [7..8] avg=7.6  |  Async Level: 2  |  Mixed-Policy: 19
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=2583)
+
+Step 67  |  Reward: 0.4375  |  Loss: -0.105156  |  Time: 8.85s  |  Throughput: 1025.6 tok/s  |  Seq Length: 304.0 tok
+ESS: 0.8785  |  Token Lag: [7..9] avg=7.7  |  Async Level: 3  |  Mixed-Policy: 21
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=2627)
+
+Step 68  |  Reward: 0.3438  |  Loss: -0.052192  |  Time: 8.92s  |  Throughput: 1026.0 tok/s  |  Seq Length: 295.2 tok
+ESS: 0.9637  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 24
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=2671)
+
+Step 69  |  Reward: 0.3750  |  Loss: -0.044005  |  Time: 8.88s  |  Throughput: 1026.5 tok/s  |  Seq Length: 294.3 tok
+ESS: 0.9451  |  Token Lag: [7..8] avg=7.8  |  Async Level: 2  |  Mixed-Policy: 25
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=2711)
+
+Step 70  |  Reward: 0.5625  |  Loss: -0.033357  |  Time: 8.96s  |  Throughput: 1026.4 tok/s  |  Seq Length: 285.7 tok
+ESS: 0.9455  |  Token Lag: [7..8] avg=7.7  |  Async Level: 2  |  Mixed-Policy: 23
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=2756)
+
+Step 71  |  Reward: 0.5312  |  Loss: -0.058420  |  Time: 9.12s  |  Throughput: 1026.5 tok/s  |  Seq Length: 294.6 tok
+ESS: 0.8883  |  Token Lag: [7..8] avg=7.9  |  Async Level: 2  |  Mixed-Policy: 29
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=2799)
+
+Step 72  |  Reward: 0.4062  |  Loss: -0.091747  |  Time: 9.06s  |  Throughput: 1027.6 tok/s  |  Seq Length: 313.7 tok
+ESS: 0.9254  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=2843)
+
+Step 73  |  Reward: 0.4688  |  Loss: -0.076347  |  Time: 8.66s  |  Throughput: 1028.7 tok/s  |  Seq Length: 303.6 tok
+ESS: 0.9990  |  Token Lag: [7..9] avg=7.8  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=2880)
+
+Step 74  |  Reward: 0.5625  |  Loss: -0.061557  |  Time: 8.99s  |  Throughput: 1028.3 tok/s  |  Seq Length: 280.2 tok
+ESS: 0.9687  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 27
+Ring buffer: skipped 10 stale sequences (jumped to read_cursor=2922)
+
+Step 75  |  Reward: 0.4688  |  Loss: -0.095090  |  Time: 8.90s  |  Throughput: 1029.4 tok/s  |  Seq Length: 309.7 tok
+ESS: 0.9623  |  Token Lag: [7..9] avg=8.0  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 17 stale sequences (jumped to read_cursor=2971)
+
+Step 76  |  Reward: 0.4062  |  Loss: -0.040110  |  Time: 8.72s  |  Throughput: 1031.0 tok/s  |  Seq Length: 317.4 tok
+ESS: 0.9539  |  Token Lag: [7..9] avg=7.9  |  Async Level: 3  |  Mixed-Policy: 28
+Ring buffer: skipped 4 stale sequences (jumped to read_cursor=3007)
+
+Step 77  |  Reward: 0.4062  |  Loss: -0.021941  |  Time: 8.56s  |  Throughput: 1030.9 tok/s  |  Seq Length: 273.0 tok
+ESS: 0.9991  |  Token Lag: [7..8] avg=7.9  |  Async Level: 2  |  Mixed-Policy: 24
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=3044)
+
+Step 78  |  Reward: 0.5625  |  Loss: -0.137634  |  Time: 8.80s  |  Throughput: 1032.0 tok/s  |  Seq Length: 307.4 tok
+ESS: 0.9974  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=3083)
+
+Step 79  |  Reward: 0.4062  |  Loss: -0.103448  |  Time: 8.73s  |  Throughput: 1033.3 tok/s  |  Seq Length: 314.0 tok
+ESS: 0.8470  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 22
+Ring buffer: skipped 14 stale sequences (jumped to read_cursor=3129)
+
+Step 80  |  Reward: 0.3750  |  Loss: -0.049474  |  Time: 9.19s  |  Throughput: 1035.2 tok/s  |  Seq Length: 340.5 tok
+ESS: 0.9535  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 28
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=3170)
+
+Step 81  |  Reward: 0.5000  |  Loss: -0.090597  |  Time: 9.03s  |  Throughput: 1035.9 tok/s  |  Seq Length: 309.4 tok
+ESS: 0.9328  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 12 stale sequences (jumped to read_cursor=3214)
+
+Step 82  |  Reward: 0.5000  |  Loss: -0.011849  |  Time: 9.19s  |  Throughput: 1036.2 tok/s  |  Seq Length: 303.7 tok
+ESS: 0.9970  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 20
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=3252)
+
+Step 83  |  Reward: 0.5625  |  Loss: -0.055390  |  Time: 8.82s  |  Throughput: 1037.4 tok/s  |  Seq Length: 315.1 tok
+ESS: 0.8860  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 8 stale sequences (jumped to read_cursor=3292)
+
+Step 84  |  Reward: 0.3125  |  Loss: -0.036288  |  Time: 9.19s  |  Throughput: 1039.0 tok/s  |  Seq Length: 337.6 tok
+ESS: 0.9485  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=3331)
+
+Step 85  |  Reward: 0.2812  |  Loss: -0.032688  |  Time: 9.22s  |  Throughput: 1039.4 tok/s  |  Seq Length: 309.2 tok
+ESS: 0.8962  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 10 stale sequences (jumped to read_cursor=3373)
+
+Step 86  |  Reward: 0.4688  |  Loss: -0.093537  |  Time: 8.97s  |  Throughput: 1039.8 tok/s  |  Seq Length: 301.2 tok
+ESS: 0.9716  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=3411)
+
+Step 87  |  Reward: 0.5312  |  Loss: -0.032875  |  Time: 8.44s  |  Throughput: 1040.9 tok/s  |  Seq Length: 302.0 tok
+ESS: 0.9972  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 3 stale sequences (jumped to read_cursor=3446)
+
+Step 88  |  Reward: 0.5000  |  Loss: -0.074277  |  Time: 9.20s  |  Throughput: 1042.2 tok/s  |  Seq Length: 334.7 tok
+ESS: 0.9351  |  Token Lag: [7..9] avg=8.4  |  Async Level: 3  |  Mixed-Policy: 20
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=3489)
+
+Step 89  |  Reward: 0.2812  |  Loss: -0.079605  |  Time: 9.14s  |  Throughput: 1043.3 tok/s  |  Seq Length: 325.7 tok
+ESS: 0.9668  |  Token Lag: [7..9] avg=8.5  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=3528)
+
+Step 90  |  Reward: 0.4375  |  Loss: -0.039812  |  Time: 8.82s  |  Throughput: 1044.6 tok/s  |  Seq Length: 321.0 tok
+ESS: 0.9428  |  Token Lag: [7..9] avg=8.4  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=3565)
+
+Step 91  |  Reward: 0.4688  |  Loss: -0.052784  |  Time: 8.90s  |  Throughput: 1045.7 tok/s  |  Seq Length: 319.9 tok
+ESS: 0.9480  |  Token Lag: [7..9] avg=8.5  |  Async Level: 3  |  Mixed-Policy: 21
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=3608)
+
+Step 92  |  Reward: 0.4062  |  Loss: -0.060133  |  Time: 9.06s  |  Throughput: 1046.6 tok/s  |  Seq Length: 322.4 tok
+ESS: 0.9489  |  Token Lag: [7..9] avg=8.4  |  Async Level: 3  |  Mixed-Policy: 21
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=3651)
+
+Step 93  |  Reward: 0.5312  |  Loss: -0.057611  |  Time: 8.94s  |  Throughput: 1048.7 tok/s  |  Seq Length: 348.8 tok
+ESS: 0.9974  |  Token Lag: [7..9] avg=8.3  |  Async Level: 3  |  Mixed-Policy: 23
+Ring buffer: skipped 5 stale sequences (jumped to read_cursor=3688)
+
+Step 94  |  Reward: 0.3750  |  Loss: -0.050208  |  Time: 8.97s  |  Throughput: 1049.9 tok/s  |  Seq Length: 326.0 tok
+ESS: 0.9452  |  Token Lag: [7..9] avg=8.4  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 13 stale sequences (jumped to read_cursor=3733)
+
+Step 95  |  Reward: 0.3750  |  Loss: -0.034304  |  Time: 9.05s  |  Throughput: 1050.6 tok/s  |  Seq Length: 317.8 tok
+ESS: 0.9989  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 7 stale sequences (jumped to read_cursor=3772)
+
+Step 96  |  Reward: 0.5312  |  Loss: -0.075416  |  Time: 9.03s  |  Throughput: 1051.6 tok/s  |  Seq Length: 325.1 tok
+ESS: 0.9229  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 9 stale sequences (jumped to read_cursor=3813)
+
+Step 97  |  Reward: 0.2500  |  Loss: -0.050468  |  Time: 8.99s  |  Throughput: 1053.7 tok/s  |  Seq Length: 353.8 tok
+ESS: 0.8487  |  Token Lag: [7..9] avg=8.2  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=3856)
+
+Step 98  |  Reward: 0.6562  |  Loss: -0.064330  |  Time: 9.00s  |  Throughput: 1053.3 tok/s  |  Seq Length: 284.2 tok
+ESS: 0.9969  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 24
+Ring buffer: skipped 11 stale sequences (jumped to read_cursor=3899)
+
+Step 99  |  Reward: 0.4688  |  Loss: -0.035931  |  Time: 8.91s  |  Throughput: 1054.4 tok/s  |  Seq Length: 325.3 tok
+ESS: 0.9973  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 26
+Ring buffer: skipped 6 stale sequences (jumped to read_cursor=3937)
+
+Step 100  |  Reward: 0.3438  |  Loss: -0.043475  |  Time: 8.84s  |  Throughput: 1054.7 tok/s  |  Seq Length: 302.5 tok
+ESS: 0.9518  |  Token Lag: [7..9] avg=8.1  |  Async Level: 3  |  Mixed-Policy: 28
+Saved checkpoint to outputs/checkpoint_step_100
+Ring buffer: skipped 18 stale sequences (jumped to read_cursor=3987)

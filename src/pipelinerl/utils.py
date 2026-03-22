@@ -166,7 +166,7 @@ class MetricsTracker:
         logger.info(
             f"\n"
             f"Step {step}  |  Reward: {reward:.4f}  |  Loss: {loss:.6f}  |  Time: {step_time:.2f}s  |  Throughput: {throughput:.1f} tok/s  |  Seq Length: {avg_seq_length:.1f} tok\n"
-            f"ESS: {ess:.4f}  |  Token Lag: [{min_token_lag}..{max_token_lag}] avg={avg_token_lag:.1f}  |  Async Level: {async_level}  |  Mixed-Policy: {mixed_policy_seqs}  |  Off-Policy: {max_token_lag}"
+            f"ESS: {ess:.4f}  |  Token Lag: [{min_token_lag}..{max_token_lag}] avg={avg_token_lag:.1f}  |  Async Level: {async_level}  |  Mixed-Policy: {mixed_policy_seqs}"
         )
 
         # W&B logging — structured into groups

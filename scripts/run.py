@@ -206,116 +206,136 @@ def _run_trainer(
     )
 
     metrics = MetricsTracker(output_dir=config.output_dir, wandb_enabled=wandb_active)
-    logger.info(f"W&B logging: {'enabled' if wandb_active else 'disabled'}")
     output_dir = Path(config.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     total_sequences = 0
     read_cursor = 0  # next sequence index to read from ring buffer
+    accum_steps = config.gradient_accumulation_steps
+    effective_batch = config.train_batch_size * accum_steps
 
-    logger.info("Trainer starting training loop...")
+    logger.info(
+        f"Trainer starting | micro-batch={config.train_batch_size} | "
+        f"accum={accum_steps} | effective batch={effective_batch}"
+    )
 
     for step in range(1, config.total_optimizer_steps + 1):
         metrics.step_start()
-
-        # -----------------------------------------------------------------
-        # Collect B sequences from the ring buffer.
-        #
-        # The Actor writes to circular slots (slot_000000.pkl, etc.) and
-        # updates write_cursor.txt with the total count. If the Actor is
-        # faster than the Trainer, the ring buffer overwrites stale data.
-        # When we detect the gap exceeds buffer_size, we skip ahead to
-        # the freshest available data — this minimizes lag.
-        # -----------------------------------------------------------------
-        batch: list[SequenceResult] = []
-        wait_start = time.time()
-
-        while len(batch) < config.train_batch_size:
-            # Read the Actor's write cursor to know what's available
-            cursor_path = results_dir / "write_cursor.txt"
-            write_cursor = 0
-            if cursor_path.exists():
-                try:
-                    write_cursor = int(cursor_path.read_text().strip())
-                except (ValueError, OSError):
-                    pass
-
-            if read_cursor < write_cursor:
-                # Check if we fell behind — skip to freshest data
-                gap = write_cursor - read_cursor
-                if gap > config.ring_buffer_size:
-                    skipped = gap - config.ring_buffer_size
-                    read_cursor = write_cursor - config.ring_buffer_size
-                    logger.info(
-                        f"Ring buffer: skipped {skipped} stale sequences "
-                        f"(jumped to read_cursor={read_cursor})"
-                    )
-
-                slot_idx = read_cursor % config.ring_buffer_size
-                slot_path = results_dir / f"slot_{slot_idx:06d}.pkl"
-                if slot_path.exists():
-                    try:
-                        with open(slot_path, "rb") as f:
-                            result = pickle.load(f)
-                        batch.append(result)
-                        read_cursor += 1
-                    except Exception:
-                        time.sleep(0.1)
-                        continue
-                else:
-                    time.sleep(0.1)
-            else:
-                # Actor hasn't produced enough yet — wait
-                time.sleep(0.5)
-                if time.time() - wait_start > 300:
-                    logger.error("Timeout waiting for Actor results")
-                    return
-
-        total_sequences += len(batch)
-
-        # -----------------------------------------------------------------
-        # Compute importance-weighted REINFORCE loss (Eq. 5)
-        # -----------------------------------------------------------------
-        loss, batch_metrics = compute_reinforce_loss(
-            model=model,
-            tokenizer=tokenizer,
-            batch=batch,
-            device=device,
-            importance_clamp=config.importance_weight_clamp,
-            current_step=step,
-        )
-
-        # -----------------------------------------------------------------
-        # Optimizer step (Algorithm 2, line 20)
-        # -----------------------------------------------------------------
         optimizer.zero_grad()
-        loss.backward()
+
+        # Accumulate metrics across micro-batches
+        step_rewards = []
+        step_ess_weights = []
+        step_max_token_lags = []
+        step_min_token_lags = []
+        step_avg_token_lags = []
+        step_mixed_policy = 0
+        step_total_tokens = 0
+        step_total_seq_len = 0
+        step_loss_accum = 0.0
+
+        for accum_idx in range(accum_steps):
+            # ---------------------------------------------------------
+            # Collect B sequences from the ring buffer
+            # ---------------------------------------------------------
+            batch: list[SequenceResult] = []
+            wait_start = time.time()
+
+            while len(batch) < config.train_batch_size:
+                cursor_path = results_dir / "write_cursor.txt"
+                write_cursor = 0
+                if cursor_path.exists():
+                    try:
+                        write_cursor = int(cursor_path.read_text().strip())
+                    except (ValueError, OSError):
+                        pass
+
+                if read_cursor < write_cursor:
+                    gap = write_cursor - read_cursor
+                    if gap > config.ring_buffer_size:
+                        skipped = gap - config.ring_buffer_size
+                        read_cursor = write_cursor - config.ring_buffer_size
+                        logger.info(
+                            f"Ring buffer: skipped {skipped} stale sequences "
+                            f"(jumped to read_cursor={read_cursor})"
+                        )
+
+                    slot_idx = read_cursor % config.ring_buffer_size
+                    slot_path = results_dir / f"slot_{slot_idx:06d}.pkl"
+                    if slot_path.exists():
+                        try:
+                            with open(slot_path, "rb") as f:
+                                result = pickle.load(f)
+                            batch.append(result)
+                            read_cursor += 1
+                        except Exception:
+                            time.sleep(0.1)
+                            continue
+                    else:
+                        time.sleep(0.1)
+                else:
+                    time.sleep(0.5)
+                    if time.time() - wait_start > 300:
+                        logger.error("Timeout waiting for Actor results")
+                        return
+
+            total_sequences += len(batch)
+
+            # ---------------------------------------------------------
+            # Forward + backward on this micro-batch (no optimizer step)
+            # Divide loss by accum_steps so gradients average correctly
+            # ---------------------------------------------------------
+            loss, batch_metrics = compute_reinforce_loss(
+                model=model,
+                tokenizer=tokenizer,
+                batch=batch,
+                device=device,
+                importance_clamp=config.importance_weight_clamp,
+                current_step=step,
+            )
+            scaled_loss = loss / accum_steps
+            scaled_loss.backward()
+
+            # Accumulate metrics
+            step_loss_accum += loss.item()
+            step_rewards.extend([s.reward for s in batch])
+            step_max_token_lags.append(batch_metrics["max_token_lag"])
+            step_min_token_lags.append(batch_metrics["min_token_lag"])
+            step_avg_token_lags.append(batch_metrics["avg_token_lag"])
+            step_mixed_policy += batch_metrics["mixed_policy_seqs"]
+            step_total_tokens += batch_metrics["batch_total_tokens"]
+            step_total_seq_len += batch_metrics["avg_seq_length"] * len(batch)
+
+        # -----------------------------------------------------------------
+        # Optimizer step (once per effective batch)
+        # -----------------------------------------------------------------
         if config.max_grad_norm > 0:
             torch.nn.utils.clip_grad_norm_(model.parameters(), config.max_grad_norm)
         optimizer.step()
 
         # -----------------------------------------------------------------
         # Publish new weights for in-flight update (Algorithm 2, line 18)
-        # The Actor will pick these up on its next check and load them
-        # into vLLM — this is the in-flight weight update.
         # -----------------------------------------------------------------
         weight_sync.publish_weights(model, step=step)
 
         # -----------------------------------------------------------------
-        # Log metrics
+        # Log aggregated metrics over all micro-batches
         # -----------------------------------------------------------------
+        avg_loss = step_loss_accum / accum_steps
+        avg_reward = sum(step_rewards) / len(step_rewards) if step_rewards else 0.0
+
         if step % config.log_interval == 0:
             metrics.log_step(
                 step=step,
-                reward=batch_metrics["mean_reward"],
-                loss=loss.item(),
-                ess=batch_metrics["ess"],
-                max_token_lag=batch_metrics["max_token_lag"],
-                min_token_lag=batch_metrics["min_token_lag"],
-                avg_token_lag=batch_metrics["avg_token_lag"],
-                mixed_policy_seqs=batch_metrics["mixed_policy_seqs"],
+                reward=avg_reward,
+                loss=avg_loss,
+                ess=batch_metrics["ess"],  # ESS from last micro-batch
+                max_token_lag=max(step_max_token_lags),
+                min_token_lag=min(step_min_token_lags),
+                avg_token_lag=sum(step_avg_token_lags) / len(step_avg_token_lags),
+                mixed_policy_seqs=step_mixed_policy,
                 num_sequences=total_sequences,
-                batch_total_tokens=batch_metrics["batch_total_tokens"],
-                avg_seq_length=batch_metrics["avg_seq_length"],
+                batch_total_tokens=step_total_tokens,
+                avg_seq_length=step_total_seq_len / effective_batch,
             )
 
         if step % config.save_interval == 0:
