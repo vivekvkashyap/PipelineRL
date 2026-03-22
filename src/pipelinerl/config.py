@@ -39,6 +39,7 @@ class PipelineRLConfig:
     length_penalty_start: float = 0.9
     length_penalty_value: float = -0.5
     ring_buffer_size: int = 256  # max sequences in the Actor→Trainer queue
+    conventional_G: int = 1  # optimizer steps per generation round (conventional RL only)
 
     # Weight sync
     weight_sync_dir: str = "/tmp/pipelinerl/weights"

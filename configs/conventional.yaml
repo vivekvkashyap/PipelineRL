@@ -1,0 +1,51 @@
+# =============================================================================
+# Conventional (Synchronous) RL Baseline
+# Algorithm 1 from the paper: generate → train → repeat (no concurrency)
+# =============================================================================
+
+# --- Model (same as PipelineRL for fair comparison) ---
+model_name: "Qwen/Qwen2.5-0.5B-Instruct"
+max_seq_len: 1024
+max_new_tokens: 512
+
+# --- GPUs ---
+actor_gpu: 0
+trainer_gpu: 1
+
+# --- Generation ---
+temperature: 1.0
+top_p: 1.0
+
+# --- Training (same hyperparameters as PipelineRL) ---
+train_batch_size: 8               # B: micro-batch size per forward pass
+learning_rate: 1.0e-6
+weight_decay: 0.0
+max_grad_norm: 1.0
+total_optimizer_steps: 500
+gradient_checkpointing: true
+gradient_accumulation_steps: 4   # effective batch = B * 4 = 32
+
+# --- Conventional RL specific ---
+conventional_G: 1                 # optimizer steps per generation round
+                                  # G=1: fully on-policy, lowest throughput
+                                  # G=4: higher throughput, some off-policyness
+importance_weight_clamp: 5.0
+length_penalty_start: 0.9
+length_penalty_value: -0.5
+
+# --- Weight Sync ---
+weight_sync_dir: "/home/ece/hdd/pipelinerl/weights_conventional"
+
+# --- Dataset ---
+dataset_name: "openai/gsm8k"
+dataset_split: "main"
+
+# --- Logging ---
+log_interval: 1
+save_interval: 50
+output_dir: "outputs/conventional"
+
+# --- Weights & Biases ---
+wandb_project: "pipelinerl"
+wandb_run_name: "conventional-rl"
+wandb_enabled: true

@@ -1,0 +1,60 @@
+W&B initialized: project=pipelinerl, run=conventional-rl
+Generator subprocess started (logs → outputs/conventional/generator.log)
+Generator ready
+Round 1/500  |  Generated 32 seqs in 11.5s  |  Trainer was IDLE during generation
+
+Step 1  |  Reward: 0.4375  |  Loss: -0.055909  |  Time: 1.89s  |  Throughput: 696.1 tok/s  |  Seq Length: 291.6 tok
+ESS: 0.8566  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 2/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 2  |  Reward: 0.3750  |  Loss: -0.041460  |  Time: 1.53s  |  Throughput: 601.1 tok/s  |  Seq Length: 306.7 tok
+ESS: 0.9988  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 3/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 3  |  Reward: 0.4062  |  Loss: -0.036290  |  Time: 1.58s  |  Throughput: 587.5 tok/s  |  Seq Length: 323.2 tok
+ESS: 0.9992  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 4/500  |  Generated 32 seqs in 11.0s  |  Trainer was IDLE during generation
+
+Step 4  |  Reward: 0.4062  |  Loss: -0.041787  |  Time: 1.61s  |  Throughput: 567.5 tok/s  |  Seq Length: 305.3 tok
+ESS: 0.9988  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 5/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 5  |  Reward: 0.3125  |  Loss: -0.033848  |  Time: 1.61s  |  Throughput: 557.8 tok/s  |  Seq Length: 302.1 tok
+ESS: 0.9994  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 6/500  |  Generated 32 seqs in 11.0s  |  Trainer was IDLE during generation
+
+Step 6  |  Reward: 0.4375  |  Loss: -0.086666  |  Time: 1.46s  |  Throughput: 552.6 tok/s  |  Seq Length: 310.5 tok
+ESS: 0.9991  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 7/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 7  |  Reward: 0.4062  |  Loss: -0.057502  |  Time: 1.43s  |  Throughput: 553.2 tok/s  |  Seq Length: 319.6 tok
+ESS: 0.9989  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 8/500  |  Generated 32 seqs in 10.0s  |  Trainer was IDLE during generation
+
+Step 8  |  Reward: 0.4688  |  Loss: -0.049084  |  Time: 1.44s  |  Throughput: 548.3 tok/s  |  Seq Length: 284.2 tok
+ESS: 0.9989  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 9/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 9  |  Reward: 0.3438  |  Loss: -0.011310  |  Time: 1.50s  |  Throughput: 545.5 tok/s  |  Seq Length: 298.7 tok
+ESS: 0.9928  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 10/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 10  |  Reward: 0.5625  |  Loss: -0.067153  |  Time: 1.59s  |  Throughput: 549.0 tok/s  |  Seq Length: 333.8 tok
+ESS: 0.9866  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 11/500  |  Generated 32 seqs in 11.0s  |  Trainer was IDLE during generation
+
+Step 11  |  Reward: 0.6250  |  Loss: -0.022606  |  Time: 1.59s  |  Throughput: 548.6 tok/s  |  Seq Length: 321.9 tok
+ESS: 0.9989  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 12/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 12  |  Reward: 0.4688  |  Loss: -0.016861  |  Time: 1.56s  |  Throughput: 546.9 tok/s  |  Seq Length: 303.9 tok
+ESS: 0.9994  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 13/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 13  |  Reward: 0.5000  |  Loss: -0.045850  |  Time: 1.60s  |  Throughput: 548.2 tok/s  |  Seq Length: 324.6 tok
+ESS: 0.9987  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 14/500  |  Generated 32 seqs in 10.5s  |  Trainer was IDLE during generation
+
+Step 14  |  Reward: 0.3750  |  Loss: -0.028804  |  Time: 1.50s  |  Throughput: 546.6 tok/s  |  Seq Length: 299.6 tok
+ESS: 0.9990  |  Token Lag: [1..1] avg=1.0  |  Async Level: 1  |  Mixed-Policy: 0
+Round 15/500  |  Generated 32 seqs in 11.0s  |  Trainer was IDLE during generation
